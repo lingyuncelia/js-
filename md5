@@ -1,0 +1,19 @@
+# import hashlib
+# a="1"
+# a=a.encode('utf-8')
+# b=hashlib.md5(a)
+# print(b)
+
+import hashlib
+def make_md5(string):
+    string=string.encode('utf-8')
+    md5=hashlib.md5(string).hexdigest()
+    return md5
+print(make_md5("I love you"))
+print(make_md5("i love you"))
+
+"""
+运行结果：
+e4f58a805a6e1fd0f6bef58c86f9ceb3
+459b9511a7f650ebd327889c45cc4e9b
+"""

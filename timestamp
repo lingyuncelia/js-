@@ -1,0 +1,11 @@
+import time
+a=str((int(time.time())))
+print(a)
+b=len(a)
+print(b)
+
+"""
+运行结果：
+1606572173
+10
+"""

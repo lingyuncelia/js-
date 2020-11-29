@@ -1,0 +1,35 @@
+import json
+from selenium import webdriver
+import os
+from pathlib import Path
+
+def del_file(f): #删除文件
+    root='K:/zhusc/{}'.format(str(f))
+    my_file = Path(root)
+    if my_file.exists():
+        os.remove(my_file)
+del_file("1.txt")
+
+def inputme(content,road):    #记事本，输入内容
+    with open(road,'a+',encoding='utf-8') as f:
+        f.write(json.dumps(content,ensure_ascii=True))
+
+def readme(str,i):   #记事本，读取内容
+    f=open(str,'r+')
+    lines=f.readlines()
+    lines[i]=lines[i].strip('\r\n')
+    return lines[i]
+
+driver=webdriver.Chrome(r'K:\zhusc\chromedriver.exe')
+url="https://www.fslib.com.cn/my"
+driver.get(url)
+driver.find_element_by_xpath('//*[@id="username"]').send_keys('440602xxxxxxxx1548')
+driver.find_element_by_xpath('//*[@id="password"]').send_keys('celiaxxxxxx')
+driver.find_element_by_xpath('//*[@id="fm1"]/button').click() #登录
+driver.maximize_window()
+cookie=driver.get_cookies()
+print(cookie)
+inputme(cookie,'K:/zhusc/1.txt')
+a=driver.find_element_by_xpath("//label[text()='昵称']").text
+print(a)
+driver.quit()

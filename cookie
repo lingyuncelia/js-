@@ -33,3 +33,20 @@ inputme(cookie,'K:/zhusc/1.txt')
 a=driver.find_element_by_xpath("//label[text()='昵称']").text
 print(a)
 driver.quit()
+
+"""
+
+from lxml import etree
+import requests
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+cookies=dict(domain="www.fslib.com.cn",httpOnly="true", name="JSESSIONID", path="/", secure="False", value="FCE8733EFBAD4D951F2BE2EE1FE54D25")
+url="https://www.fslib.com.cn/my"
+headers={
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36',    
+}
+data = requests.get(url,headers=headers,cookies=cookies,verify=False).text 
+s=etree.HTML(data)
+print(s.xpath("//label[text()='昵称']/text()"))
+
+"""

@@ -1,0 +1,9 @@
+import execjs
+js='''
+function add(a,b){
+    result=a+b;
+    return result
+}
+'''
+resp=execjs.compile(js)
+print(resp.call('add',10,100))

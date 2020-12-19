@@ -1,0 +1,11 @@
+import execjs
+js='''
+var result=[];
+for(var i=0;i<3;i++){
+    s=Math.floor(Math.random()*9);
+    result.push(s);
+}
+return result.join('');
+'''
+resp=execjs.compile(js)
+print(resp.call('randcookie'))

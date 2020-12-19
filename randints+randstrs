@@ -1,0 +1,25 @@
+import execjs
+js='''
+function randints(r,n,tof){
+    var result=[];
+    if(tof){
+        return Math.floor(Math.random()*r);
+    }
+    for(var i=0;i<n;i++){
+        s=Math.floor(Math.random()*r);
+        result.push(s);
+    }
+    return result.join('');
+}
+function randstrs(n){
+    var result=[];
+    for(var i=0;i<n;i++){
+        s=String.fromCharCode(64+randints(25,1,1));
+        result.push(s);
+    }
+    return result.join('');
+}
+'''
+resp=execjs.compile(js)
+print(resp.call('randints',25,1,1))
+print(resp.call('randstrs',5))

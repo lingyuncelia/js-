@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<h1>JavaScript console.log() 方法</h1>
+<p>Microsoft Edge浏览器无效</p>
+<p>Google Chrome浏览器无效</p>
+<p>按下 F12 查看控制台信息。</p>
+<script>
+console.log("Hello Runoob!");
+</script>
+
+</body>
+</html>

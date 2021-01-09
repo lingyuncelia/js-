@@ -18,7 +18,6 @@
                 height: 30px;
                 line-height: 30px;
                 overflow: hidden;
-                vertical-align: baseline;
                 font-weight: normal
             }
             address,cite,dfn,em,i,optgroup,var {

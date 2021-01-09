@@ -1,0 +1,94 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>Steamboat-反爬虫练习</title>
+        <style>
+            .fix_price .prc_wp .rel {
+                position: relative;
+                padding-left: 1px
+            }
+            .fix_price .prc_wp b {
+                position: absolute;
+                width: 18px;
+                letter-spacing: 0;
+                word-spacing: 0;
+                display: block;
+                top: 0;
+                background: #fff;
+                height: 30px;
+                line-height: 30px;
+                overflow: hidden;
+                vertical-align: baseline;
+                font-weight: normal
+            }
+            address,cite,dfn,em,i,optgroup,var {
+                font-style: normal
+            }
+            .m-airfly-lst .e-airfly {
+                padding: 25px 30px 18px 15px;
+                zoom:1;cursor: pointer
+            }
+            .m-airfly-lst .col-price {
+                display: inline-block;
+                vertical-align: middle;
+                width: 160px;
+                text-align: right;
+                color: #ff8205
+            }
+            .m-airfly-lst .col-price .prc {
+                font-size: 30px;
+                margin: 0 -8px 3px 0
+            }
+        </style>
+    </head>
+    <body>
+        <div class="m-airfly-lst">
+            <div class="b-airfly b-airfly-rec">
+                <div class="e-airfly">
+                    <div class="col-price">
+                        <p class="prc">
+                            <span class="fix_price">
+                                <span class="prc_wp" style="width:48px">
+                                    <em class="rel">
+                                        <b style="width:48px;left:-48px">
+                                            <i style="width: 16px;">7</i>
+                                            <i style="width: 16px;">7</i>
+                                            <i style="width: 16px;">7</i>
+                                        </b>
+                                        <b style="width: 16px;left:-32px">6</b>
+                                        <b style="width: 16px;left:-48px">4</b>
+                                    </em>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-airfly-lst">
+            <div class="b-airfly b-airfly-rec">
+                <div class="e-airfly">
+                    <div class="col-price">
+                        <p class="prc">
+                            <span class="fix_price">
+                                <span class="prc_wp" style="width:64px">
+                                    <em class="rel">
+                                        <b style="width:64px;left:-64px">
+                                            <i style="width: 16px;">8</i>
+                                            <i style="width: 16px;">3</i>
+                                            <i style="width: 16px;">9</i>
+                                            <i style="width: 16px;">5</i>
+                                        </b>
+                                        <b style="width: 16px;left:-32px">0</b>
+                                        <b style="width: 16px;left:-48px">7</b>
+                                        <b style="width: 16px;left:-16px">5</b>
+                                    </em>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

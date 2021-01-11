@@ -1,0 +1,96 @@
+ <html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>Steamboat-反爬虫练习</title>
+        <style>
+            .fix_price .prc_wp .rel {   /*空白*/
+                position: relative;     /*相对*/
+                padding-left: 1px;
+                background: rgb(14, 8, 71);
+            }
+            .fix_price .prc_wp b {      /*显示所有数字*/
+                position: absolute;     /*绝对*/
+                width: 18px;            /*如果后面的b没说明width,这里的width才起作用*/
+                letter-spacing: 0;      /*字母的间距，1--13，影响b的第一组数字，7，8*/
+                word-spacing: 0;        /*段落中的字间距,5--19,在此范围内数值越大，第二组数字的8显示得越多*/
+                display: block;
+                top: 10;
+                background: rgb(71, 8, 40);
+                height: 30px;
+                line-height: 30px;     /*行间距*/
+                overflow: hidden;      /*overflow:属性规定当内容溢出元素框时发生的事情。hidden:内容会被修剪，并且其余内容是不可见的*/
+                font-weight: normal
+            }
+            em,i {     /*倾斜残缺,em,强调文本，使其倾斜，控制b的第二组数字，i，斜体文本，控制第一组数字*/
+                font-style: normal;
+                background: rgb(17, 207, 43);
+            }
+            .m-airfly-lst .e-airfly {                /*行距缩小*/
+                padding: 25px 30px 18px 15px;
+                zoom:1;
+                background: rgb(178, 196, 115);                              /*zoom:缩放*/
+            }
+            .m-airfly-lst .col-price {               /*字体变黑，位置严重偏左*/
+                display: inline-block;
+                width: 160px;
+                vertical-align:middle;
+                text-align: right;                  /*center:第二行出现些许8，right:数字在块内靠右，left:数字靠左。同时整个块也随之移动*/
+                color: #ff8205;
+                background: rgb(8, 48, 71);
+            }
+            .m-airfly-lst .col-price .prc {          /*字体缩小，第二行数字多了8*/
+                font-size: 30px;
+                margin: 10 -8px 30px 0;
+                background: rgb(37, 168, 11);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="m-airfly-lst">                     <!-- 数字消失 -->
+                <div class="e-airfly">                 <!-- 位置左上偏移 -->
+                    <div class="col-price">            <!-- 字体变黑，位置严重偏左 -->
+                        <p class="prc">                <!-- 字体缩小 -->
+                            <span class="fix_price">   <!-- 显示所有数字 -->
+                                <span class="prc_wp">  <!-- 显示所有数字，style="width:48px"好像没什么用 -->
+                                    <em class="rel">   <!-- 数字消失 -->
+                                        <b style="width:480px;left:-96px">  <!-- width:太小7向左消失，会将3个7迫得阴影位置向下排列,太大向右移动出现3个7;
+                                                                            left:太大2个7向右移动，第3个7排在第二个7下面；太小2个7向左移动，第3个7排在第二个7下面 -->
+                                            <i style="width:16px">7</i>   <!-- width的大小好像没什么用 -->
+                                            <i style="width:16px">7</i>
+                                            <i style="width:16px">7</i>
+                                                                                    
+                                        </b>
+                                        <b style="width: 16px;left:-32px">6</b>
+                                        <b style="width: 16px;left:-48px">4</b>
+                                    </em>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>            
+        </div>
+        <div class="m-airfly-lst">            
+                <div class="e-airfly">
+                    <div class="col-price">
+                        <p class="prc">                  <!-- 字体缩小，多了数字8 -->
+                            <span class="fix_price">
+                                <span class="prc_wp" style="width:64px">
+                                    <em class="rel">
+                                        <b style="width:64px;left:-64px">
+                                            <i style="width: 16px;">1</i>
+                                            <i style="width: 16px;">1</i>
+                                            <i style="width: 16px;">1</i>
+                                            <i style="width: 16px;">1</i>
+                                        </b>
+                                        <b style="width: 16px;left:-32px">0</b>
+                                        <b style="width: 16px;left:-48px">7</b>
+                                        <b style="width: 16px;left:-16px">5</b>
+                                    </em>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>            
+        </div>
+    </body>
+</html>

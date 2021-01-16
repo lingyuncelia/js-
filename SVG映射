@@ -1,0 +1,36 @@
+demo.html
+
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="zhiliao.css">
+</head>
+<body>
+<d class="lhttest"></d>
+</body>
+</html>
+--------------------------------------------------------------------
+zhiliao.css
+
+d[class^="lht"]{
+    width: 10px;
+    height: 45px;
+    margin-top:9px;
+    background-image: url(zhiliao.svg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: chartreuse; 
+    margin-left: 6px;    
+}
+.lhttest {
+    background-position:-10px -5px;
+}
+---------------------------------------------------
+zhiliao.svg
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="650px" height="230.0px">
+<style>text {font-family:PingFangSC-Regular,Microsoft YaHei,'Hiragino Sans GB',Helvetica;font-size:14px;fill:#666;}</style>
+<text x='10 20 30 40 50 60 70 80 90 100 110' y='30'>hello,world</text> 
+</svg>

@@ -1,0 +1,26 @@
+import re
+css_class_name='lhttest'
+pile='.%s{background:-(\d+)px-(\d+)px;}' % css_class_name
+pattern=re.compile(pile)
+css_resp="""
+d[class^="lht"]{
+    width: 14px;
+    height: 38px;
+    margin-top:90px;
+    background-image: url(zhiliao.svg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: chartreuse; 
+    margin-left: 60px;    
+}
+.lhttest {
+    background:-14px -5px;
+}
+"""
+css=css_resp.replace('\n','').replace(' ','')
+coord=pattern.findall(css)
+if coord:
+    x,y=coord[0]
+    x,y=int(x),int(y)
+    print(x,y)

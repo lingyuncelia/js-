@@ -1,0 +1,44 @@
+import re
+css_class_name='lhttest'
+pile='.%s{background:-(\d+)px-(\d+)px;}' % css_class_name
+pattern=re.compile(pile)
+css_resp="""
+d[class^="lht"]{
+    width: 14px;
+    height: 14px;
+    margin-top:90px;
+    background-image: url(zhiliao.svg);
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-color: chartreuse; 
+    margin-left: 60px;    
+}
+.lhttest {
+    background:-14px -1px;
+}
+"""
+css=css_resp.replace('\n','').replace(' ','')
+coord=pattern.findall(css)
+if coord:
+    x,y=coord[0]
+    x,y=int(x),int(y)
+from parsel import Selector
+svg_resp="""
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="650px" height="230.0px">
+<style>text {font-family:PingFangSC-Regular,Microsoft YaHei,'Hiragino Sans GB',Helvetica;font-size:14px;fill:red;}</style>
+<text x='0 14 28 42 56 70 84 98 112 126 140 154' y='13'>如果是中文呢，效果如何</text> 
+<text x='14 28 42 56 70 84 98 112 126 140 154' y='70'>Hello,world</text> 
+<text x='14 28 42 56 70 84 98 112 126 140 154' y='110'>神探夏洛克，歌神陈奕迅</text> 
+<text x='14 28 42 56 70 84 98 112 126 140 154' y='150'>甜美女声任然月球下的人</text> 
+</svg>
+"""
+svg_data=Selector(svg_resp)
+texts=svg_data.xpath('//text')
+axis_y=[i.attrib.get('y') for i in texts if y<=int(i.attrib.get('y'))][0]
+svg_text=svg_data.xpath('//text[@y="{}"]/text()'.format(axis_y)).extract_first()
+font_size=re.search('font-size:(\d+)px',svg_resp).group(1)
+position=x//int(font_size)
+target=svg_text[position]
+print(target)

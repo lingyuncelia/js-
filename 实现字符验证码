@@ -5,15 +5,18 @@
 <title>菜鸟教程(runoob.com)</title>
 </head>
 <body>
-<canvas id="wordsCanvas" width="200" height="40">
+
+<canvas id="wordsCanvas">
 </canvas>
 <script>
+var width="200";
+var height="40";
 
 var wordsCanvas=document.getElementById('wordsCanvas');
 var cvas=wordsCanvas.getContext('2d');
 
 cvas.fillStyle=randColor(120,230);
-cvas.fillRect(0,0,200,40);
+cvas.fillRect(0,0,width,height);
 
 function randNumber(min,max){
     var res=parseInt(Math.random()*(max-min)+min);
@@ -43,7 +46,41 @@ for (var i=0;i<6;i++){
     cvas.restore();
     strs.push(single)
 }
+
+function cvasInterfere(cvas,width,height){
+    for(var i=0;i<8;i++){
+        cvas.beginPath();
+        cvas.moveTo(randNumber(0,width),randNumber(0,height));
+        cvas.lineTo(randNumber(0,width),randNumber(0,height));
+        cvas.strokeStyle=randColor(180,220);
+        cvas.closePath();
+        cvas.stroke();
+    }
+
+    for(var i=0;i<80;i++){
+        cvas.beginPath();
+        cvas.arc(randNumber(0,width),randNumber(0,height),1,0,2*Math.PI);
+        cvas.closePath();
+        cvas.fillStyle=randColor(150,250);
+        cvas.fill();
+    }
+}
+cvasInterfere(cvas,width,height);
+
+function wordsVerifys(){
+    var codeStr=strs.join('');
+    var inputCode=document.getElementById('code').value.toUpperCase();
+    if(inputCode==codeStr){
+        alert('验证码：'+inputCode+',通过验证。');
+    }else{
+        alert('很遗憾，未通过验证');
+    }
+}
+
 </script>
+
+<input type="text" id="code">
+<button type="" class="btn btn-default" onclick="wordsVerifys()">登录</button>
 
 </body>
 </html>

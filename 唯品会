@@ -1,0 +1,20 @@
+var window=global;
+require('C:/Users/ZSC/Desktop/vipParamsEncrypt-hash-2de62b73.js')
+
+var CryptoJS = require("K:/nodejs/node_global/node_modules/crypto-js"); 
+// MD5加密
+var password="123456"
+var key = CryptoJS.MD5(password).toString(); 
+console.log(key)
+
+data={
+    "loginName": "13690249923",
+    "password": key,
+    "remUser": 0,
+    "whereFrom": "",
+    "captchaId": "velSmatjAWTzC6EPIMytcWPQoq7LAjvSpNTGFey-GmN0DBYsTPb-b1cO04cPH-8LeOF7w7oODopz7G6gLTIZu4mSKgcseCKK46InWWHcOHaAZsOEnpv-B4yW73DIkbj3Rytv48qZZ35l7m3pE7WNgVM42CnK4Pu1j759zaUxB17u5v101BAM-hhFH5WA2qqXHtirN8QJhj8bDvsRGw3SYapaJH7Xg_kuKF4IuijIC4LPk7QDzCfxevwW5GBYkubNR4eGWEpgr5esn64XtiO4pXc-ulmz_m4v.1431000177",
+    "captchaTicket": "",
+    "_t": new Date().getTime(),
+    "api_key": "70f71280d5d547b2a7bb370a529aeea1"
+}
+console.log(window.vipParamsEncrypt.encrypt("3c5ad16dbc06cd16ae1fd3344d87f16b", data));

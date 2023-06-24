@@ -1,0 +1,81 @@
+const https = require('https');
+var access_token = '';
+function getToken() {
+  const data = JSON.stringify({}); // 在这里填写POST请求的payload
+  const options = {
+    hostname: 'aip.baidubce.com',
+    path: '/oauth/2.0/token?grant_type=client_credentials&client_id=XXX&client_secret=YYY',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': data.length
+    }
+  };
+  const req = https.request(options, res => {
+    let body = '';
+    res.on('data', chunk => {
+      body += chunk;
+    });
+    res.on('end', () => {
+      const jsonResponse = JSON.parse(body);
+      access_token = jsonResponse.access_token;
+    });
+  });
+  req.on('error', error => {
+    console.error(error);
+  });
+
+  req.write(data);
+  req.end();
+}
+getToken();
+module.exports = access_token;
+//拖延时间，使其同步，直到access_token出现，才执行下一步
+const waitAndGetToken = () => {
+    return new Promise(resolve => {
+      const checkToken = () => {
+        if (access_token) {
+          resolve(access_token);
+        } else {
+          setTimeout(checkToken, 100);
+        }
+      };
+      checkToken();
+    });
+  };
+  waitAndGetToken().then(token => {
+    // 在这里执行下一步操作
+    xxx();
+  });
+function xxx(){
+    const imageFilePath = 'D:/zhusc/celia/1.png'; // 图片文件路径
+    const accessToken = access_token; // 在百度云OCR控制台中获取的access_token
+    const fs = require('fs');
+    const buffer = fs.readFileSync('D:/zhusc/celia/1.png'); // 读取文件，返回一个 Buffer 对象
+    const base64Str = buffer.toString('base64'); // 将 Buffer 对象转换为 Base64 编码的字符串
+    const img=base64Str
+    //npm install axios@0.21.4 
+    //axios多数是ES模块，但这版本是CommonJS模块，这方法好，Node.js 的 CommonJS 环境加载 ES 模块诸多不便
+    const axios = require('C:/Users/lingyuncelia/AppData/Roaming/npm/node_modules/axios');
+    const querystring = require('querystring');
+    const params = {"image":img};
+    //const request_url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic';//标准版
+    const request_url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic';//高精度版
+    const data = querystring.stringify(params);
+    const headers = {'content-Type':'application/x-www-form-urlencoded'};
+    const url = `${request_url}?access_token=${access_token}`;
+    axios.post(url, data, {headers})
+    .then(response => {
+        console.log('words_0:' + response.data.words_result[0].words);
+        //清除不可见字符
+        const wordsValue = response.data.words_result[0].words.replace(/\s/g, '');
+        if (wordsValue.length === 4) {
+          console.log(`words: ${wordsValue}`);
+        } else {
+          console.log(`Invalid words value: ${wordsValue}`);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
